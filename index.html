@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Quiz</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="highscores-div">
+        <p id="highscores-link">View High Scores</p>
+    </div>
+    <div id="timer-div">
+        <p>Timer: <span id="timer">0</span></p>
+    </div>
+
+    <section id="highscores" class="hidden">
+        <h1>High Scores</h1>
+        <table id="highscores-table">
+            <thead>
+                <th>Name</th>
+                <th>Score</th>
+            </thead>
+            <tbody>
+                <!-- table entries get manually added in script.js -->
+            </tbody>
+        </table>
+    </section>
+    
+    <!-- this section is the only one that begins visible -->
+    <section id="begin-page">
+        <h1>Get To Know Me Quiz</h1>
+        <p>This quiz tests how well you know me! Get started by clicking the button below.</p>
+        <button id="begin-button">Begin</button>
+    </section>
+
+    <section id="question1" class="hidden">
+        <h1>What was Megan's first dream career?</h1>
+        <ul id="answer-list">
+            <li><button class="correct">CIA Agent</button></li>
+            <li><button>Lawyer</button></li>
+            <li><button>Astronaut</button></li>
+            <li><button>Author</button></li>
+        </ul>
+    </section>
+
+    <section id="question2" class="hidden">
+        <h1>Which one of these pretentious colors is Megan's favorite?</h1>
+        <ul id="answer-list">
+            <li><button class="correct">Seafoam Green</button></li>
+            <li><button>Lilac</button></li>
+            <li><button>Pastel Periwinkle</button></li>
+            <li><button>None of the above</button></li>
+        </ul>
+    </section>
+
+    <section id="question3" class="hidden">
+        <h1>What inanimate object almost killed Megan?</h1>
+        <ul id="answer-list">
+            <li><button>Knife</button></li>
+            <li><button class="correct">Splinter</button></li>
+            <li><button>Rock</button></li>
+            <li><button>Barbed-wire Fence</button></li>
+        </ul>
+    </section>
+
+    <section id="question4" class="hidden">
+        <h1>What is Megan's favorite Pokemon generation?</h1>
+        <ul id="answer-list">
+            <li><button>1st (Red/Green)</button></li>
+            <li><button>2nd (Gold/Silver)</button></li>
+            <li><button>3rd (Ruby/Sapphire)</button></li>
+            <li><button class="correct">4th (Diamond/Pearl)</button></li>
+        </ul>
+    </section>
+
+    <section id="question5" class="hidden">
+        <h1>What was Megan's first programminng langauge?</h1>
+        <ul id="answer-list">
+            <li><button class="correct">C++</button></li>
+            <li><button>C#</button></li>
+            <li><button>Java</button></li>
+            <li><button>Python</button></li>
+        </ul>
+    </section>
+
+
+    <section id="question6" class="hidden">
+        <h1>Three of these pictures exist in the world. Which one has been made up?</h1>
+        <ul id="answer-list">
+            <li><button>4-year-old Megan wearing pigtails and crying</button></li>
+            <li><button>Toddler Megan sitting on a toilet and smiling</button></li>
+            <li><button>11-year-old Megan holding a picture of a dog and crying</button></li>
+            <li><button class="correct">7-year-old Megan sitting on a garage roof and smiling</button></li>
+        </ul>
+    </section>
+
+    <section id="question7" class="hidden">
+        <h1>What comic franchise did Megan devote her teen years (and beyond) to?</h1>
+        <ul id="answer-list">
+            <li><button>Paranatural</button></li>
+            <li><button>Scott Pilgrim</button></li>
+            <li><button class="correct">Homestuck</button></li>
+            <li><button>Transformers</button></li>
+        </ul>
+    </section>
+
+    <section id="question8" class="hidden">
+        <h1>What nerdy club was Megan a part of in high school?</h1>
+        <ul id="answer-list">
+            <li><button>Homework Club</button></li>
+            <li><button>Duct Tape Club</button></li>
+            <li><button class="correct">Both</button></li>
+            <li><button>Neither</button></li>
+        </ul>
+    </section>
+
+    <section id="question9" class="hidden">
+        <h1>Tea or coffee?</h1>
+        <ul id="answer-list">
+            <li><button>Tea</button></li>
+            <li><button class="correct">Coffee</button></li>
+            <li><button>Both</button></li>
+            <li><button>Neither</button></li>
+        </ul>
+    </section>
+
+    <section id="question10" class="hidden">
+        <h1>Who was the author of the novel Megan wrote her thesis on?</h1>
+        <ul id="answer-list">
+            <li><button>Stein</button></li>
+            <li><button>Hemingway</button></li>
+            <li><button class="correct">Le Guin</button></li>
+            <li><button>Woolf</button></li>
+        </ul>
+    </section>
+
+    <section id="quiz-complete" class="hidden">
+        <h1>Quiz Complete</h1>
+        <form id="score-form">
+            <label for="submit-text">Enter your name to log your score:</label>
+            <input type="text" placeholder="Name" name="submit-text" id="submit-text" />
+            <button id="submit-scores">Submit</button>
+          </form>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
