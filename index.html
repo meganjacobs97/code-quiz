@@ -1,13 +1,16 @@
+<!-- meta data -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code Quiz</title>
-
+    <title>Quiz</title>
+    <!-- css link -->
     <link rel="stylesheet" href="style.css">
 </head>
+<!-- page content -->
 <body>
+    <!-- at top of page: highscores link and timer -->
     <div id="highscores-div">
         <p><a href="#" id="highscores-link">View High Scores</a></p>
     </div>
@@ -15,6 +18,7 @@
         <p>Timer: <span id="timer">0</span></p>
     </div>
 
+    <!-- high scores section -->
     <section id="highscores" class="hidden">
         <h1>High Scores</h1>
         <table id="highscores-table">
@@ -30,7 +34,8 @@
         <button id="start-over">Start Over</button>
         <button id="clear-scores">Clear Scores</button>
     </section>
-    
+
+    <!-- welcome section -->
     <!-- this section is the only one that begins visible -->
     <section id="begin-page" data-current="current">
         <h1>Get To Know Me Quiz</h1>
@@ -38,6 +43,7 @@
         <button id="begin-button">Begin</button>
     </section>
 
+    <!-- question 1 -->
     <section id="question1" class="hidden">
         <h1>What was Megan's first dream career?</h1>
         <ul>
@@ -48,6 +54,7 @@
         </ul>
     </section>
 
+    <!-- question 2 -->
     <section id="question2" class="hidden">
         <h1>Which one of these pretentious colors is Megan's favorite?</h1>
         <ul>
@@ -58,6 +65,7 @@
         </ul>
     </section>
 
+    <!-- question 3 -->
     <section id="question3" class="hidden">
         <h1>What inanimate object almost killed Megan?</h1>
         <ul>
@@ -68,6 +76,7 @@
         </ul>
     </section>
 
+    <!-- question 4 -->
     <section id="question4" class="hidden">
         <h1>What is Megan's favorite Pokemon generation?</h1>
         <ul>
@@ -78,6 +87,7 @@
         </ul>
     </section>
 
+    <!-- question 5 -->
     <section id="question5" class="hidden">
         <h1>What was Megan's first programminng langauge?</h1>
         <ul>
@@ -88,7 +98,7 @@
         </ul>
     </section>
 
-
+    <!-- question 6 -->
     <section id="question6" class="hidden">
         <h1>Three of these pictures exist in the world. Which one has been made up?</h1>
         <ul>
@@ -99,6 +109,7 @@
         </ul>
     </section>
 
+    <!-- question 7 -->
     <section id="question7" class="hidden">
         <h1>What comic franchise did Megan devote her teen years (and beyond) to?</h1>
         <ul>
@@ -109,6 +120,7 @@
         </ul>
     </section>
 
+    <!-- question 8 -->
     <section id="question8" class="hidden">
         <h1>What nerdy club was Megan a part of in high school?</h1>
         <ul>
@@ -119,6 +131,7 @@
         </ul>
     </section>
 
+    <!-- question 9 -->
     <section id="question9" class="hidden">
         <h1>Tea or coffee?</h1>
         <ul>
@@ -129,6 +142,7 @@
         </ul>
     </section>
 
+    <!-- question 10 -->
     <section id="question10" class="hidden">
         <h1>Who was the author of the novel Megan wrote her thesis on?</h1>
         <ul>
@@ -139,6 +153,7 @@
         </ul>
     </section>
 
+    <!-- complete section -->
     <section id="quiz-complete" class="hidden">
         <h1>Quiz Complete</h1>
         <form id="score-form">
@@ -148,6 +163,7 @@
           </form>
     </section>
 
+    <!-- js link -->
     <script src="script.js"></script>
 </body>
 </html>

@@ -1,7 +1,10 @@
+/* universal selector */
 * {
     background-color: #F4D58D;
     font-family: sans-serif; 
 }
+
+/* element selectors */
 section {
     width: 50%; 
     padding-top: 20px;  
@@ -19,13 +22,9 @@ button {
     font-size: 16px;
     width: 50%; 
 }
-#submit-scores, #start-over, #clear-scores {
-    width: 10%; 
-    margin-top: 0px; 
-    padding: 5px; 
-    font-size: 10px; 
+ul {
+    list-style-type: none;
 }
-
 table {
 	font-family: verdana,arial,sans-serif;
 	font-size:16px;
@@ -50,11 +49,21 @@ table td {
     background-color: #ffffff;
 
 }
+
+/* class selectors */
+.hidden {
+    display: none; 
+} 
+
+/* id selectors */
+#submit-scores, #start-over, #clear-scores {
+    width: 10%; 
+    margin-top: 0px; 
+    padding: 5px; 
+    font-size: 10px; 
+}
 #begin-page {
     text-align: center; 
-}
-ul {
-    list-style-type: none;
 }
 #highscores-div {
     position: absolute; 
@@ -68,6 +77,3 @@ ul {
     right: 0%; 
     margin-right: 10px; 
 }
-.hidden {
-    display: none; 
-} 

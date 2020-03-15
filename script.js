@@ -1,3 +1,4 @@
+// get elements 
 var beginButton = document.querySelector("#begin-button"); 
 var scoreForm = document.querySelector("#score-form"); 
 var submitText = document.querySelector("#submit-text"); 
@@ -10,32 +11,29 @@ var tableBody = document.querySelector("#table-body");
 var highScoresSection = document.querySelector("#highscores"); 
 var timer = document.querySelector("#timer"); 
 
-var score = 0; 
-var scoresArr = []; 
+var score = 0; //user score
+var scoresArr = []; //for saving scores 
 var secondsLeft; //seconds left in the quiz 
 
-
+//click action listener - for answer buttons and high scores link 
 addEventListener("click",function(event) {
-    //stop default behavior 
-    event.preventDefault(); 
-    var buttonID = event.target.getAttribute("id"); 
+    
+    event.preventDefault(); //stop default behavior 
+    
+    var buttonID = event.target.getAttribute("id"); // get id of think being clicked 
+
     //only do anything if its a button thats not the submit scores button or score control buttons
-    // && buttonID != "begin-button"
     if(event.target.matches("button") && buttonID != "submit-scores" && buttonID != "start-over" && buttonID != "clear-scores" ) {
         
         //this will be the one we use if we are on the start page
         var currentSectionIDBegin = event.target.parentElement.getAttribute("id"); 
         //this will be the one we use if we are on a question
         var currentSectionIDQuestions = event.target.parentElement.parentElement.parentElement.getAttribute("id"); 
-    
-        
 
         //if this is a button that corressponds with a correct answer 
         if(event.target.getAttribute("class") === "correct") {
             //increase score
             score++; 
-            //TODO DELETE
-            console.log("correct answer selected");
         }
         //wrong answer selected; remove time 
         else if(buttonID !="begin-button") {
@@ -47,14 +45,9 @@ addEventListener("click",function(event) {
                 secondsLeft = 1; 
             }
         }
-        //TODO DELETE
-        console.log(buttonID); 
-        console.log("Immediate parent id: " + currentSectionIDBegin); 
-        console.log("next: " + event.target.parentElement.parentElement.parentElement.getAttribute("id")); 
 
         //call function to go to the next section 
-        //if theres no id on the most immediate parrent
-        if(currentSectionIDBegin === null) {
+        if(currentSectionIDBegin === null) { //if theres no id on the most immediate parent
             //pass next ancestor id 
             renderNextSection(currentSectionIDQuestions); 
         }
@@ -68,6 +61,7 @@ addEventListener("click",function(event) {
     }
 });
 
+//action listener for begin quiz button 
 beginButton.addEventListener("click",function(event) {
     //reset seconds left 
     secondsLeft = 60; 
@@ -75,43 +69,43 @@ beginButton.addEventListener("click",function(event) {
     timer.textContent = secondsLeft; 
     //start timer 
     setTime(); 
-
 }); 
 
+//listener for when scores are submitted 
 scoreForm.addEventListener("click",function(event) {
     //stop form from default behavior 
     event.preventDefault(); 
     //only want to do anything if submit was clicked 
     if(event.target.matches("button")) {
-        var currentSection = event.target.parentElement.parentElement.getAttribute("id"); 
-        
+        var currentSectionID = event.target.parentElement.parentElement.getAttribute("id"); 
 
         //grab input name 
         var input = submitText.value;
+
         //make sure array isnt null
         if(scoresArr === null) {
-            scoresArr = []; 
+            scoresArr = []; //if it is, make the array 
         }
-        //add to array
+
+        //add score to array
         scoresArr.push({"name":input,"score":score})
         //resort array
         scoresArr.sort(compare); 
 
         //use localstorage to store scores 
-        //clean out scores if they are already in there
-        if(localStorage.getItem("scores") !== null) {
+        if(localStorage.getItem("scores") !== null) { //clean out scores if they are already in there
             localStorage.removeItem("scores"); 
         }
+
         //add all values back in 
         localStorage.setItem("scores",JSON.stringify(scoresArr)); 
 
-
-        renderHighScores(currentSection); 
-
+        //show high scores section 
+        renderHighScores(currentSectionID); 
     }
-
 }); 
 
+//listener for clear scores button 
 clearScoresButton.addEventListener("click",function(event) {
     //empty out array
     scoresArr = []; 
@@ -123,6 +117,7 @@ clearScoresButton.addEventListener("click",function(event) {
     tableBody.innerHTML = ""; 
 }); 
 
+//listener for start over button 
 startOverButton.addEventListener("click",function(event) {
     //reset score
     score = 0; 
@@ -138,14 +133,13 @@ startOverButton.addEventListener("click",function(event) {
     //show original page
     beginPage.removeAttribute("class"); 
     beginPage.setAttribute("data-current","current")
-    
-
 }); 
 
-
+//renders next section and hides the current one 
 function renderNextSection(currentSectionID) {
     var currentSection = document.querySelector("#" + currentSectionID);  
     var nextSection = currentSection.nextElementSibling; 
+    
     //hide current section 
     currentSection.setAttribute("class","hidden"); 
     currentSection.removeAttribute("data-current","current");
@@ -166,18 +160,18 @@ function renderNextSection(currentSectionID) {
     }
 }
 
+//renders high scores section and hides current section 
 function renderHighScores(currentSectionID) {
     var currentSection = document.querySelector("#" + currentSectionID); 
     
     //remove current table data from the page 
     tableBody.innerHTML = ""; 
 
-    //GRAB HIGH SCORES AND PUT THEM IN TABLE 
     //grab scores from local storage 
     scoresArr = JSON.parse(localStorage.getItem("scores")); 
-    //if there are scores to put on the page
-    if(scoresArr !== null) {
-    //step through array
+    
+    if(scoresArr !== null) { //if there are scores to put on the page
+        //step through array
         for(var i = 0; i < scoresArr.length; i++) {
             //create row
             var tableRow = document.createElement("tr");
@@ -198,22 +192,19 @@ function renderHighScores(currentSectionID) {
             tableBody.appendChild(tableRow);
         }
     }
-
     
     //hide current section 
     currentSection.setAttribute("class","hidden"); 
     currentSection.removeAttribute("data-current"); 
-    //render high scores 
+    //show high scores 
     highScoresSection.removeAttribute("class"); 
     highScoresSection.setAttribute("data-current","current");
-
 }
 
 
 //for sorting scoresarr - sorts in descending order 
 //code modified from https://flaviocopes.com/how-to-sort-array-of-objects-by-property-javascript/
 function compare(a, b) {
-    // Use toUpperCase() to ignore character casing
     var A = a.score;
     var B = b.score;
   
@@ -227,24 +218,25 @@ function compare(a, b) {
     return comparison * -1;
 }
 
+//starts & tracks timer 
 function setTime() {
     var timerInterval = setInterval(function() {
-        secondsLeft--; 
-        timer.textContent = secondsLeft; 
+        secondsLeft--; //decrement time 
+        timer.textContent = secondsLeft; //display time left  
 
-
-
+        //when time runs out 
         if(secondsLeft === 0) {
-            clearInterval(timerInterval); 
-            //hide current section, go to submit form 
+            clearInterval(timerInterval); //stop timer 
+
+            //hide current section
             var currentSection = document.querySelector("[data-current='current']"); 
             currentSection.setAttribute("class","hidden"); 
             currentSection.removeAttribute("data-current"); 
 
+            //show submit scores form 
             var submitSection = document.querySelector("#quiz-complete"); 
             submitSection.setAttribute("class","current"); 
             submitSection.setAttribute("data-current","current"); 
         }
-
-    }, 1000); //timer counts down every second
+    }, 1000); //interval is 1 second long 
 }
