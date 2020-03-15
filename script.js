@@ -1,4 +1,4 @@
-//var beginButton = document.querySelector("#begin-button"); 
+var beginButton = document.querySelector("#begin-button"); 
 var scoreForm = document.querySelector("#score-form"); 
 var submitText = document.querySelector("#submit-text"); 
 var highScoresLink = document.querySelector("#highscores-link"); 
@@ -8,9 +8,11 @@ var highScoresDiv = document.querySelector("#highscores-div");
 var beginPage = document.querySelector("#begin-page"); 
 var tableBody = document.querySelector("#table-body"); 
 var highScoresSection = document.querySelector("#highscores"); 
+var timer = document.querySelector("#timer"); 
 
 var score = 0; 
 var scoresArr = []; 
+var secondsLeft; //seconds left in the quiz 
 
 
 addEventListener("click",function(event) {
@@ -18,7 +20,8 @@ addEventListener("click",function(event) {
     event.preventDefault(); 
     var buttonID = event.target.getAttribute("id"); 
     //only do anything if its a button thats not the submit scores button or score control buttons
-    if(event.target.matches("button") && buttonID != "submit-scores" && buttonID != "start-over" && buttonID != "clear-scores") {
+    // && buttonID != "begin-button"
+    if(event.target.matches("button") && buttonID != "submit-scores" && buttonID != "start-over" && buttonID != "clear-scores" ) {
         
         //this will be the one we use if we are on the start page
         var currentSectionIDBegin = event.target.parentElement.getAttribute("id"); 
@@ -33,6 +36,16 @@ addEventListener("click",function(event) {
             score++; 
             //TODO DELETE
             console.log("correct answer selected");
+        }
+        //wrong answer selected; remove time 
+        else if(buttonID !="begin-button") {
+            if(secondsLeft > 10) {
+                secondsLeft -= 10; 
+            }
+            //if deducting time would cause timer to run out, need to end game 
+            else {
+                secondsLeft = 1; 
+            }
         }
         //TODO DELETE
         console.log(buttonID); 
@@ -55,6 +68,16 @@ addEventListener("click",function(event) {
     }
 });
 
+beginButton.addEventListener("click",function(event) {
+    //reset seconds left 
+    secondsLeft = 60; 
+    //show on the page
+    timer.textContent = secondsLeft; 
+    //start timer 
+    setTime(); 
+
+}); 
+
 scoreForm.addEventListener("click",function(event) {
     //stop form from default behavior 
     event.preventDefault(); 
@@ -65,6 +88,10 @@ scoreForm.addEventListener("click",function(event) {
 
         //grab input name 
         var input = submitText.value;
+        //make sure array isnt null
+        if(scoresArr === null) {
+            scoresArr = []; 
+        }
         //add to array
         scoresArr.push({"name":input,"score":score})
         //resort array
@@ -86,7 +113,6 @@ scoreForm.addEventListener("click",function(event) {
 }); 
 
 clearScoresButton.addEventListener("click",function(event) {
-    console.log("IN CLEAR"); 
     //empty out array
     scoresArr = []; 
 
@@ -95,9 +121,6 @@ clearScoresButton.addEventListener("click",function(event) {
 
     //remove list items from the page 
     tableBody.innerHTML = ""; 
-
-    highScoresSection.setAttribute("class","hidden"); 
-    highScoresSection.removeAttribute("class"); 
 }); 
 
 startOverButton.addEventListener("click",function(event) {
@@ -111,8 +134,10 @@ startOverButton.addEventListener("click",function(event) {
     var currentSection = event.target.parentElement;
     //hide current section
     currentSection.setAttribute("class","hidden"); 
+    currentSection.removeAttribute("data-current"); 
     //show original page
     beginPage.removeAttribute("class"); 
+    beginPage.setAttribute("data-current","current")
     
 
 }); 
@@ -123,6 +148,7 @@ function renderNextSection(currentSectionID) {
     var nextSection = currentSection.nextElementSibling; 
     //hide current section 
     currentSection.setAttribute("class","hidden"); 
+    currentSection.removeAttribute("data-current","current");
 
     //also hide high scores link if it needs to be hidden
     if(highScoresDiv.getAttribute("class") === null) {
@@ -131,6 +157,13 @@ function renderNextSection(currentSectionID) {
 
     //show next section
     nextSection.removeAttribute("class"); 
+    nextSection.setAttribute("data-current","current")
+
+    //make sure to stop timer if next section is the quiz completed section 
+    if(nextSection.getAttribute("id") === "quiz-complete") {
+        //set to 1 so timer doesnt go below zero 
+        secondsLeft = 1; 
+    }
 }
 
 function renderHighScores(currentSectionID) {
@@ -147,14 +180,18 @@ function renderHighScores(currentSectionID) {
     //step through array
         for(var i = 0; i < scoresArr.length; i++) {
             //create row
-            var tableRow = document.createElement("tr"); 
+            var tableRow = document.createElement("tr");
+            //create row entry 
+            var rankData = document.createElement("td"); 
+            rankData.textContent = i + 1;  
             //create name entry
             var nameData = document.createElement("td"); 
             nameData.textContent = scoresArr[i].name; 
             //create scores entry 
             var scoreData = document.createElement("td"); 
             scoreData.textContent = scoresArr[i].score; 
-            //add both to row
+            //add to row
+            tableRow.appendChild(rankData); 
             tableRow.appendChild(nameData); 
             tableRow.appendChild(scoreData); 
             //add row to table 
@@ -165,8 +202,10 @@ function renderHighScores(currentSectionID) {
     
     //hide current section 
     currentSection.setAttribute("class","hidden"); 
+    currentSection.removeAttribute("data-current"); 
     //render high scores 
     highScoresSection.removeAttribute("class"); 
+    highScoresSection.setAttribute("data-current","current");
 
 }
 
@@ -186,4 +225,26 @@ function compare(a, b) {
     }
     //invert return value by multiplying by -1
     return comparison * -1;
-  }
+}
+
+function setTime() {
+    var timerInterval = setInterval(function() {
+        secondsLeft--; 
+        timer.textContent = secondsLeft; 
+
+
+
+        if(secondsLeft === 0) {
+            clearInterval(timerInterval); 
+            //hide current section, go to submit form 
+            var currentSection = document.querySelector("[data-current='current']"); 
+            currentSection.setAttribute("class","hidden"); 
+            currentSection.removeAttribute("data-current"); 
+
+            var submitSection = document.querySelector("#quiz-complete"); 
+            submitSection.setAttribute("class","current"); 
+            submitSection.setAttribute("data-current","current"); 
+        }
+
+    }, 1000); //timer counts down every second
+}
