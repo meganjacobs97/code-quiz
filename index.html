@@ -9,7 +9,7 @@
 </head>
 <body>
     <div id="highscores-div">
-        <p id="highscores-link"><a href="#">View High Scores</a></p>
+        <p><a href="#" id="highscores-link">View High Scores</a></p>
     </div>
     <div id="timer-div">
         <p>Timer: <span id="timer">0</span></p>
@@ -19,10 +19,11 @@
         <h1>High Scores</h1>
         <table id="highscores-table">
             <thead>
+                <th>Rank</th>
                 <th>Name</th>
                 <th>Score</th>
             </thead>
-            <tbody>
+            <tbody id="table-body">
                 <!-- table entries get manually added in script.js -->
             </tbody>
         </table>
@@ -31,7 +32,7 @@
     </section>
     
     <!-- this section is the only one that begins visible -->
-    <section id="begin-page">
+    <section id="begin-page" data-current="current">
         <h1>Get To Know Me Quiz</h1>
         <p>This quiz tests how well you know me! Get started by clicking the button below.</p>
         <button id="begin-button">Begin</button>
