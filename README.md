@@ -1,6 +1,6 @@
 # Quiz About Me
 
-## A timed quiz with multiple-choice questions, including a responsive user interface that features dynamically updated HTML and CSS that is powered by JavaScript 
+## A timed quiz with multiple-choice questions, including a user interface that features dynamically updated HTML and CSS that is powered by JavaScript 
 
 This was mainly an exercise in web APIs and dynamically adding HTML and CSS elements to a webpage using JavaScript. 
 
@@ -15,10 +15,6 @@ To modify the code to suit your purposes, you can use an IDE such as [VS Code](h
 ## Usage 
 
 To take the quiz, simply press the "begin" button. Once you have completed the quiz or the time runs out, you can enter your name to save your score. You may also clear the saved scores by pressing the "clear scores" button. To take the quiz again upon completion, press the "start over" button. 
-
-## Credits 
-
-Built with [Bootstrap](https://getbootstrap.com/).
 
 ## License
 
