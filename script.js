@@ -6,6 +6,8 @@ var startOverButton = document.querySelector("#start-over");
 var clearScoresButton = document.querySelector("#clear-scores");
 var highScoresDiv = document.querySelector("#highscores-div");
 var beginPage = document.querySelector("#begin-page"); 
+var tableBody = document.querySelector("#table-body"); 
+var highScoresSection = document.querySelector("#highscores"); 
 
 var score = 0; 
 var scoresArr = []; 
@@ -61,13 +63,20 @@ scoreForm.addEventListener("click",function(event) {
         var currentSection = event.target.parentElement.parentElement.getAttribute("id"); 
         
 
-        //TODO - GRAB INPUT, STORE HIGH SCORES IN ARRAY OR OBJECT THAT SORTS EVERY TIME 
         //grab input name 
         var input = submitText.value;
         //add to array
         scoresArr.push({"name":input,"score":score})
         //resort array
         scoresArr.sort(compare); 
+
+        //use localstorage to store scores 
+        //clean out scores if they are already in there
+        if(localStorage.getItem("scores") !== null) {
+            localStorage.removeItem("scores"); 
+        }
+        //add all values back in 
+        localStorage.setItem("scores",JSON.stringify(scoresArr)); 
 
 
         renderHighScores(currentSection); 
@@ -77,9 +86,18 @@ scoreForm.addEventListener("click",function(event) {
 }); 
 
 clearScoresButton.addEventListener("click",function(event) {
+    console.log("IN CLEAR"); 
     //empty out array
+    scoresArr = []; 
+
+    //remove array from storage
+    localStorage.removeItem("scores"); 
 
     //remove list items from the page 
+    tableBody.innerHTML = ""; 
+
+    highScoresSection.setAttribute("class","hidden"); 
+    highScoresSection.removeAttribute("class"); 
 }); 
 
 startOverButton.addEventListener("click",function(event) {
@@ -97,7 +115,7 @@ startOverButton.addEventListener("click",function(event) {
     beginPage.removeAttribute("class"); 
     
 
-})
+}); 
 
 
 function renderNextSection(currentSectionID) {
@@ -117,26 +135,46 @@ function renderNextSection(currentSectionID) {
 
 function renderHighScores(currentSectionID) {
     var currentSection = document.querySelector("#" + currentSectionID); 
-    var highScoresSection = document.querySelector("#highscores"); 
-
+    
+    //remove current table data from the page 
+    tableBody.innerHTML = ""; 
 
     //GRAB HIGH SCORES AND PUT THEM IN TABLE 
-    
-
-    //only show/hide page if we're intially rendering, not clearing scores 
-    if(currentSection !== null) {
-        //hide current section 
-        currentSection.setAttribute("class","hidden"); 
-        //render high scores 
-        highScoresSection.removeAttribute("class"); 
+    //grab scores from local storage 
+    scoresArr = JSON.parse(localStorage.getItem("scores")); 
+    //if there are scores to put on the page
+    if(scoresArr !== null) {
+    //step through array
+        for(var i = 0; i < scoresArr.length; i++) {
+            //create row
+            var tableRow = document.createElement("tr"); 
+            //create name entry
+            var nameData = document.createElement("td"); 
+            nameData.textContent = scoresArr[i].name; 
+            //create scores entry 
+            var scoreData = document.createElement("td"); 
+            scoreData.textContent = scoresArr[i].score; 
+            //add both to row
+            tableRow.appendChild(nameData); 
+            tableRow.appendChild(scoreData); 
+            //add row to table 
+            tableBody.appendChild(tableRow);
+        }
     }
 
+    
+    //hide current section 
+    currentSection.setAttribute("class","hidden"); 
+    //render high scores 
+    highScoresSection.removeAttribute("class"); 
+
 }
+
+
 //for sorting scoresarr - sorts in descending order 
 //code modified from https://flaviocopes.com/how-to-sort-array-of-objects-by-property-javascript/
 function compare(a, b) {
     // Use toUpperCase() to ignore character casing
-    console.log("IN SORTING"); 
     var A = a.score;
     var B = b.score;
   
@@ -147,5 +185,5 @@ function compare(a, b) {
       comparison = -1;
     }
     //invert return value by multiplying by -1
-  return comparison * -1;
+    return comparison * -1;
   }
