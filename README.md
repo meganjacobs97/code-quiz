@@ -16,6 +16,10 @@ To modify the code to suit your purposes, you can use an IDE such as [VS Code](h
 
 To take the quiz, simply press the "begin" button. Once you have completed the quiz or the time runs out, you can enter your name to save your score. You may also clear the saved scores by pressing the "clear scores" button. To take the quiz again upon completion, press the "start over" button. 
 
+## Credits
+
+Built with [Bootstrap](https://getbootstrap.com/).
+
 ## License
 
 MIT License

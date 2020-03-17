@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
+    <!-- bootstrap link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- css link -->
     <link rel="stylesheet" href="style.css">
 </head>
@@ -18,150 +20,179 @@
         <p>Timer: <span id="timer">0</span></p>
     </div>
 
-    <!-- high scores section -->
-    <section id="highscores" class="hidden">
-        <h1>High Scores</h1>
-        <table id="highscores-table">
-            <thead>
-                <th>Rank</th>
-                <th>Name</th>
-                <th>Score</th>
-            </thead>
-            <tbody id="table-body">
-                <!-- table entries get manually added in script.js -->
-            </tbody>
-        </table>
-        <button id="start-over">Start Over</button>
-        <button id="clear-scores">Clear Scores</button>
-    </section>
+    <div class="container rounded">
+        <!-- high scores section -->
+        <div class="row">
+            <section id="highscores" class="hidden" class="col-sm-12">
+                <h1>High Scores</h1>
+                <table id="highscores-table" class="table">
+                    <thead>
+                        <th>Rank</th>
+                        <th>Name</th>
+                        <th>Score</th>
+                    </thead>
+                    <tbody id="table-body">
+                        <!-- table entries get manually added in script.js -->
+                    </tbody>
+                </table>
+                <button type="button" class="btn btn-primary" id="start-over">Start Over</button>
+                <button type="button" class="btn btn-primary" id="clear-scores">Clear Scores</button>
+            </section>
+        </div>
 
-    <!-- welcome section -->
-    <!-- this section is the only one that begins visible -->
-    <section id="begin-page" data-current="current">
-        <h1>Get To Know Me Quiz</h1>
-        <p>This quiz tests how well you know me! Get started by clicking the button below.</p>
-        <button id="begin-button">Begin</button>
-    </section>
+        <!-- welcome section -->
+        <!-- this section is the only one that begins visible -->
+        <div class="row">
+            <section id="begin-page" data-current="current" class="col-sm-12">
+                <h1>Get To Know Me Quiz</h1>
+                <p>This quiz tests how well you know me! Get started by clicking the button below.</p>
+                <button id="begin-button" type="button" class="btn btn-primary">Begin</button>
+            </section>
+        </div>
 
-    <!-- question 1 -->
-    <section id="question1" class="hidden">
-        <h1>What was Megan's first dream career?</h1>
-        <ul>
-            <li><button class="correct">CIA Agent</button></li>
-            <li><button>Lawyer</button></li>
-            <li><button>Astronaut</button></li>
-            <li><button>Author</button></li>
-        </ul>
-    </section>
+        <!-- question 1 -->
+        <div class="row">
+            <section id="question1" class="hidden" class="col-sm-12">
+                <h1>What was Megan's first dream career?</h1>
+                <ul>
+                    <li><button type="button" class="btn btn-primary correct">CIA Agent</button></li>
+                    <li><button type="button" class="btn btn-primary" >Lawyer</button></li>
+                    <li><button type="button" class="btn btn-primary" >Astronaut</button></li>
+                    <li><button type="button" class="btn btn-primary" >Author</button></li>
+                </ul>
+            </section>
+        </div>
 
-    <!-- question 2 -->
-    <section id="question2" class="hidden">
-        <h1>Which one of these pretentious colors is Megan's favorite?</h1>
-        <ul>
-            <li><button class="correct">Seafoam Green</button></li>
-            <li><button>Lilac</button></li>
-            <li><button>Pastel Periwinkle</button></li>
-            <li><button>None of the above</button></li>
-        </ul>
-    </section>
+        <!-- question 2 -->
+        <div class="row">
+            <section id="question2" class="hidden" class="col-sm-12">
+                <h1>Which one of these pretentious colors is Megan's favorite?</h1>
+                <ul>
+                    <li><button type="button" class="btn btn-primary correct">Seafoam Green</button></li>
+                    <li><button type="button" class="btn btn-primary">Lilac</button></li>
+                    <li><button type="button" class="btn btn-primary">Pastel Periwinkle</button></li>
+                    <li><button type="button" class="btn btn-primary">None of the above</button></li>
+                </ul>
+            </section>
+        </div>
 
-    <!-- question 3 -->
-    <section id="question3" class="hidden">
-        <h1>What inanimate object almost killed Megan?</h1>
-        <ul>
-            <li><button>Knife</button></li>
-            <li><button class="correct">Splinter</button></li>
-            <li><button>Rock</button></li>
-            <li><button>Barbed-wire Fence</button></li>
-        </ul>
-    </section>
+        <!-- question 3 -->
+        <div class="row">
+            <section id="question3" class="hidden" class="col-sm-12">
+                <h1>What inanimate object almost killed Megan?</h1>
+                <ul>
+                    <li><button type="button" class="btn btn-primary">Knife</button></li>
+                    <li><button type="button" class="btn btn-primary correct">Splinter</button></li>
+                    <li><button type="button" class="btn btn-primary">Rock</button></li>
+                    <li><button type="button" class="btn btn-primary">Barbed-wire Fence</button></li>
+                </ul>
+            </section>
+        </div>
 
-    <!-- question 4 -->
-    <section id="question4" class="hidden">
-        <h1>What is Megan's favorite Pokemon generation?</h1>
-        <ul>
-            <li><button>1st (Red/Green)</button></li>
-            <li><button>2nd (Gold/Silver)</button></li>
-            <li><button>3rd (Ruby/Sapphire)</button></li>
-            <li><button class="correct">4th (Diamond/Pearl)</button></li>
-        </ul>
-    </section>
+        <!-- question 4 -->
+        <div class="row">
+            <section id="question4" class="hidden" class="col-sm-12">
+                <h1>What is Megan's favorite Pokemon generation?</h1>
+                <ul>
+                    <li><button type="button" class="btn btn-primary">1st (Red/Green)</button></li>
+                    <li><button type="button" class="btn btn-primary">2nd (Gold/Silver)</button></li>
+                    <li><button type="button" class="btn btn-primary" >3rd (Ruby/Sapphire)</button></li>
+                    <li><button type="button" class="btn btn-primary correct">4th (Diamond/Pearl)</button></li>
+                </ul>
+            </section>
+        </div>
 
-    <!-- question 5 -->
-    <section id="question5" class="hidden">
-        <h1>What was Megan's first programminng langauge?</h1>
-        <ul>
-            <li><button class="correct">C++</button></li>
-            <li><button>C#</button></li>
-            <li><button>Java</button></li>
-            <li><button>Python</button></li>
-        </ul>
-    </section>
+        <!-- question 5 -->
+        <div class="row">
+            <section id="question5" class="hidden" class="col-sm-12">
+                <h1>What was Megan's first programminng langauge?</h1>
+                <ul>
+                    <li><button type="button" class="btn btn-primary correct">C++</button></li>
+                    <li><button type="button" class="btn btn-primary">C#</button></li>
+                    <li><button type="button" class="btn btn-primary">Java</button></li>
+                    <li><button type="button" class="btn btn-primary">Python</button></li>
+                </ul>
+            </section>
+        </div>
 
-    <!-- question 6 -->
-    <section id="question6" class="hidden">
-        <h1>Three of these pictures exist in the world. Which one has been made up?</h1>
-        <ul>
-            <li><button>4-year-old Megan wearing pigtails and crying</button></li>
-            <li><button>Toddler Megan sitting on a toilet and smiling</button></li>
-            <li><button>11-year-old Megan holding a picture of a dog and crying</button></li>
-            <li><button class="correct">7-year-old Megan sitting on a garage roof and smiling</button></li>
-        </ul>
-    </section>
+        <!-- question 6 -->
+        <div class="row">
+            <section id="question6" class="hidden" class="col-sm-12">
+                <h1>Three of these pictures exist in the world. Which one has been made up?</h1>
+                <ul>
+                    <li><button type="button" class="btn btn-primary">4-year-old Megan wearing pigtails and crying</button></li>
+                    <li><button type="button" class="btn btn-primary">Toddler Megan sitting on a toilet and smiling</button></li>
+                    <li><button type="button" class="btn btn-primary">11-year-old Megan holding a picture of a dog and crying</button></li>
+                    <li><button type="button" class="btn btn-primary correct">7-year-old Megan sitting on a garage roof and smiling</button></li>
+                </ul>
+            </section>
+        </div>
 
-    <!-- question 7 -->
-    <section id="question7" class="hidden">
-        <h1>What comic franchise did Megan devote her teen years (and beyond) to?</h1>
-        <ul>
-            <li><button>Paranatural</button></li>
-            <li><button>Scott Pilgrim</button></li>
-            <li><button class="correct">Homestuck</button></li>
-            <li><button>Transformers</button></li>
-        </ul>
-    </section>
+        <!-- question 7 -->
+        <div class="row">
+            <section id="question7" class="hidden" class="col-sm-12">
+                <h1>What comic franchise did Megan devote her teen years (and beyond) to?</h1>
+                <ul>
+                    <li><button type="button" class="btn btn-primary" >Paranatural</button></li>
+                    <li><button type="button" class="btn btn-primary" >Scott Pilgrim</button></li>
+                    <li><button type="button" class="btn btn-primary correct">Homestuck</button></li>
+                    <li><button type="button" class="btn btn-primary">Transformers</button></li>
+                </ul>
+            </section>
+        </div>
 
-    <!-- question 8 -->
-    <section id="question8" class="hidden">
-        <h1>What nerdy club was Megan a part of in high school?</h1>
-        <ul>
-            <li><button>Homework Club</button></li>
-            <li><button>Duct Tape Club</button></li>
-            <li><button class="correct">Both</button></li>
-            <li><button>Neither</button></li>
-        </ul>
-    </section>
+        <!-- question 8 -->
+        <div class="row">
+            <section id="question8" class="hidden" class="col-sm-12">
+                <h1>What nerdy club was Megan a part of in high school?</h1>
+                <ul>
+                    <li><button type="button" class="btn btn-primary">Homework Club</button></li>
+                    <li><button type="button" class="btn btn-primary">Duct Tape Club</button></li>
+                    <li><button type="button" class="btn btn-primary correct">Both</button></li>
+                    <li><button type="button" class="btn btn-primary">Neither</button></li>
+                </ul>
+            </section>
+        </div>
 
-    <!-- question 9 -->
-    <section id="question9" class="hidden">
-        <h1>Tea or coffee?</h1>
-        <ul>
-            <li><button>Tea</button></li>
-            <li><button class="correct">Coffee</button></li>
-            <li><button>Both</button></li>
-            <li><button>Neither</button></li>
-        </ul>
-    </section>
+        <!-- question 9 -->
+        <div class="row">
+            <section id="question9" class="hidden" class="col-sm-12">
+                <h1>Tea or coffee?</h1>
+                <ul>
+                    <li><button type="button" class="btn btn-primary">Tea</button></li>
+                    <li><button type="button" class="btn btn-primary correct">Coffee</button></li>
+                    <li><button type="button" class="btn btn-primary">Both</button></li>
+                    <li><button type="button" class="btn btn-primary">Neither</button></li>
+                </ul>
+            </section>
+        </div>
 
-    <!-- question 10 -->
-    <section id="question10" class="hidden">
-        <h1>Who was the author of the novel Megan wrote her thesis on?</h1>
-        <ul>
-            <li><button>Stein</button></li>
-            <li><button>Hemingway</button></li>
-            <li><button class="correct">Le Guin</button></li>
-            <li><button>Woolf</button></li>
-        </ul>
-    </section>
+        <!-- question 10 -->
+        <div class="row">
+            <section id="question10" class="hidden" class="col-sm-12">
+                <h1>Who was the author of the novel Megan wrote her thesis on?</h1>
+                <ul>
+                    <li><button type="button" class="btn btn-primary">Stein</button></li>
+                    <li><button type="button" class="btn btn-primary">Hemingway</button></li>
+                    <li><button type="button" class="btn btn-primary correct">Le Guin</button></li>
+                    <li><button type="button" class="btn btn-primary">Woolf</button></li>
+                </ul>
+            </section>
+        </div>
 
-    <!-- complete section -->
-    <section id="quiz-complete" class="hidden">
-        <h1>Quiz Complete</h1>
-        <form id="score-form">
-            <label for="submit-text">Enter your name to log your score:</label>
-            <input type="text" placeholder="Name" name="submit-text" id="submit-text" />
-            <button id="submit-scores">Submit</button>
-          </form>
-    </section>
+        <!-- complete section -->
+        <div class="row">
+            <section id="quiz-complete" class="hidden" class="col-sm-12">
+                <h1>Quiz Complete</h1>
+                <form id="score-form">
+                    <label for="submit-text">Enter your name to log your score:</label>
+                    <input type="text" placeholder="Name" name="submit-text" id="submit-text" />
+                    <button type="button" id="submit-scores" class="btn btn-primary">Submit</button>
+                </form>
+            </section>
+        </div>
+
+    </div>
 
     <!-- js -->
     <script src="script.js"></script>

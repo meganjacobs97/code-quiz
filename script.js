@@ -31,7 +31,7 @@ addEventListener("click",function(event) {
         var currentSectionIDQuestions = event.target.parentElement.parentElement.parentElement.getAttribute("id"); 
 
         //if this is a button that corressponds with a correct answer 
-        if(event.target.getAttribute("class") === "correct") {
+        if(event.target.classList.contains("correct")) {
             //increase score
             score++; 
         }
@@ -123,34 +123,38 @@ startOverButton.addEventListener("click",function(event) {
     score = 0; 
 
     //make high scores link visible again 
-    highScoresDiv.removeAttribute("class"); 
+    highScoresDiv.classList.toggle("hidden"); 
 
     //get current section
     var currentSection = event.target.parentElement;
     //hide current section
-    currentSection.setAttribute("class","hidden"); 
+    currentSection.classList.toggle("hidden"); 
     currentSection.removeAttribute("data-current"); 
     //show original page
-    beginPage.removeAttribute("class"); 
+    beginPage.classList.toggle("hidden"); 
     beginPage.setAttribute("data-current","current")
 }); 
 
 //renders next section and hides the current one 
 function renderNextSection(currentSectionID) {
     var currentSection = document.querySelector("#" + currentSectionID);  
-    var nextSection = currentSection.nextElementSibling; 
+    var nextSection = (((currentSection.parentElement).nextElementSibling).firstElementChild); 
+    
+    console.log(currentSection); 
+    console.log(currentSection.parentElement);
+    
     
     //hide current section 
-    currentSection.setAttribute("class","hidden"); 
+    currentSection.classList.toggle("hidden"); 
     currentSection.removeAttribute("data-current","current");
 
     //also hide high scores link if it needs to be hidden
-    if(highScoresDiv.getAttribute("class") === null) {
-        highScoresDiv.setAttribute("class","hidden"); 
+    if(!highScoresDiv.classList.contains("hidden")) {
+        highScoresDiv.classList.toggle("hidden"); 
     }
 
     //show next section
-    nextSection.removeAttribute("class"); 
+    nextSection.classList.toggle("hidden"); 
     nextSection.setAttribute("data-current","current")
 
     //make sure to stop timer if next section is the quiz completed section 
@@ -194,10 +198,10 @@ function renderHighScores(currentSectionID) {
     }
     
     //hide current section 
-    currentSection.setAttribute("class","hidden"); 
+    currentSection.classList.toggle("hidden"); 
     currentSection.removeAttribute("data-current"); 
     //show high scores 
-    highScoresSection.removeAttribute("class"); 
+    highScoresSection.classList.toggle("hidden"); 
     highScoresSection.setAttribute("data-current","current");
 }
 
@@ -230,12 +234,12 @@ function setTime() {
 
             //hide current section
             var currentSection = document.querySelector("[data-current='current']"); 
-            currentSection.setAttribute("class","hidden"); 
+            currentSection.classList.toggle("hidden"); 
             currentSection.removeAttribute("data-current"); 
 
             //show submit scores form 
             var submitSection = document.querySelector("#quiz-complete"); 
-            submitSection.setAttribute("class","current"); 
+            submitSection.classList.toggle("hidden"); 
             submitSection.setAttribute("data-current","current"); 
         }
     }, 1000); //interval is 1 second long 
